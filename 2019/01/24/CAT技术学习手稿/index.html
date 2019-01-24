@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">760</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">759</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -398,7 +398,7 @@ height:50vh;
         <p>最近做的研究用到了，做一下备忘</p>
 <p><strong>Cache Allocation Technology(CAT)</strong>提供对给定线程，应用程序，虚拟机进行LLC级cache使用量限制<br>CAT引入了一种称为Class of Service( CLOS )的中间构造，可以理解为资源控制标签，无论是线程还是app/VM/container ，一旦被分组到这个标签下，并且此时CLOS如果又具有关联的resource capacity bitmasks(CBMs)，那么一组都能使用这个被约束的缓存。如图所示：<br><img src="/2019/01/24/CAT技术学习手稿/01.png" alt=""><br>通过containing capacity bitmasks (CBMs)的MSR block指定给应用程序它可以使用的cache量. 这个所谓的CBMs表示了在L3 cache上不同线程重叠或者隔离程度。<br><img src="/2019/01/24/CAT技术学习手稿/02.png" alt=""><br>举个形象化的例子，比如下图中，CLOS[1] 比CLOS[3]用的缓存更少，那么它就可以认为是较低的优先级。<br><img src="/2019/01/24/CAT技术学习手稿/03.png" alt=""><br>在bitmask 不重叠的情况下，应用程序不会在L3层相互竞争空间，它们使用单独的分区，可以随着资源需求的变化随时动态更新.如上图中的CLOS[0] 和 CLOS[1]。<br>接下来我们考虑在重叠的情况下，如CLOS[2] 和CLOS[3] ，通常可以实现比不限制情况下更高的吞吐量，并且可以保留相对的优先级(显然此时CLOS[3] 比CLOS[2]优先级要高)</p>
 <p>官方推荐的用法主要在云环境的优化，在多租户虚拟机的情况下，通常会有很多异构类型的应用程序。它们共享资源（就比如LL3 cache），但是某些应用程序（如视频流或转码）会消耗过多的LL3 cache. 例如下图中 “noisy neighbor”在core 0就占用了过多的LL3 cache, 在LL3这一级采用的是<strong>先来先服务</strong>的方式，此时尽管App[1]很重要，而且核心优先级要高，但是运行速度低于预期，性能倒转.<br><img src="/2019/01/24/CAT技术学习手稿/04.png" alt=""></p>
-<p>##首先是怎么把CAT跑起来##<br>分配并监视L3chache分配情况</p>
+<h2 id="首先是怎么把CAT跑起来"><a href="#首先是怎么把CAT跑起来" class="headerlink" title="首先是怎么把CAT跑起来"></a>首先是怎么把CAT跑起来</h2><p>分配并监视L3chache分配情况</p>
 <ol>
 <li>配置重启内核 系统会开启RDT支持 通过 <pre><code>dmesg | grep rdt 
 </code></pre>  可以看到对应选项已经开启</li>
@@ -428,7 +428,7 @@ tasks: 采用该策略的所有进程
             <p>原文作者：<a href="https://yxiaoge.github.io">YSJ</a>
             </p><p>原文链接：<a href="https://yxiaoge.github.io/2019/01/24/CAT技术学习手稿/">https://yxiaoge.github.io/2019/01/24/CAT技术学习手稿/</a>
             </p><p>发表日期：<a href="https://yxiaoge.github.io/2019/01/24/CAT技术学习手稿/">January 24th 2019, 7:55:22 pm</a>
-            </p><p>更新日期：<a href="https://yxiaoge.github.io/2019/01/24/CAT技术学习手稿/">January 24th 2019, 8:01:25 pm</a>
+            </p><p>更新日期：<a href="https://yxiaoge.github.io/2019/01/24/CAT技术学习手稿/">January 24th 2019, 8:07:14 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -553,7 +553,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先是怎么把CAT跑起来"><span class="toc-number">1.</span> <span class="toc-text">首先是怎么把CAT跑起来</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -566,16 +566,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

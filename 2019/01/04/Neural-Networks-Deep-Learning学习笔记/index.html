@@ -395,37 +395,34 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>##为什么深度学习这个概念一直都有，但最近变得特别厉害##<br>传统的机器学习算法（SUM ， LogicTree等）在大数据量的情况下会遇到瓶颈。即 到达某个点，喂进去更多的数据量也没什么用了<br>而神经网络，如果规模足够大的话，表现和数据量（带标签的数据量）成正比</p>
+        <h2 id="为什么深度学习这个概念一直都有，但最近变得特别厉害"><a href="#为什么深度学习这个概念一直都有，但最近变得特别厉害" class="headerlink" title="为什么深度学习这个概念一直都有，但最近变得特别厉害"></a>为什么深度学习这个概念一直都有，但最近变得特别厉害</h2><p>传统的机器学习算法（SUM ， LogicTree等）在大数据量的情况下会遇到瓶颈。即 到达某个点，喂进去更多的数据量也没什么用了<br>而神经网络，如果规模足够大的话，表现和数据量（带标签的数据量）成正比</p>
 <p><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/01.png" alt=""></p>
 <p>规模一直在推动深度学习的发展，一方面指的是神经网络的规模，另一方面则是指的是数据的规模</p>
 <p>许多算法上的创新是为了增快计算的速度，使得能够训练规模更大的神经网络，提高迭代速度</p>
 <p>Idea -&gt; Code -&gt; Experiment -&gt;Idea</p>
-<p>##logistic回归##<br>Given x, want y = P(y = 1| x)<br>该回归的参数是w 和 b<br>输出是 y = sigmoid( wT x + b) 如图所示<br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/05.jpg" alt=""><br>用于二分分类的算法<br>计算机在保存图片信息时，一般有红黄蓝三个独立的矩阵<br>误差函数是对单个样本而言的 衡量单一训练样例的效果<br>成本函数是基于参数的总成本 衡量参数 w 和 b 的效果<br>要找到合适的参数w 和 b使得成本函数J尽可能的小<br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/02.png" alt=""></p>
-<p>###梯度下降算法##<br>找w的最小值 w := w - α dJ(w)/dw<br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/03.png" alt=""><br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/04.png" alt=""><br>J是成本函数，其值为<br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/06.png" alt=""><br>这样设置J的目的是为了确保梯度下降是能求到唯一的一个点<br>链式法则： 如果a 影响到v 最终影响到J , 那么让a变大时，J的变化量就是当你改变a时v的变化量乘以改变v时J的变化量</p>
-<p>##约定俗成的数学符号##<br>m表示训练集的规模，训练样本的个数<br>(x, y ) x是n维的特征向量，标签y值为0或者1<br>：= 表示更新值<br>dw 表示导数<br>ə 当函数J中的变量有两个以上时 使用这个偏导数符号 计算一个函数在对应点所对应的斜率<br>d 当函数J中的变量仅有一个时，使用d就行了<br>dvar表示你关心的最终变量J的导数</p>
-<p>##向量化##<br>为了消除显示的for循环, 简单点来说 向量化比起非向量化要快了300倍<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">a = np.random.rand(1000000)</span><br><span class="line">b = np.random.rand(1000000)</span><br><span class="line"></span><br><span class="line">tic = time.time()</span><br><span class="line">c = np.dot(a,b)</span><br><span class="line">toc = time.time()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Vectorized version: "</span> + str(1000*(toc-tic))+<span class="string">"ms"</span>)</span><br><span class="line"></span><br><span class="line">c = 0</span><br><span class="line">tic = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range (1000000) :</span><br><span class="line">    c += a[i] * b[i]</span><br><span class="line">toc = time.time()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"For loop: "</span> + str(1000*(toc-tic)) + <span class="string">"ms"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>##SIMD-Single##<br>单指令流多数据流：如果使用了这样的内置函数，或者其他能让你去掉显示for循环的函数，这样可以并行化的更快的去计算</p>
-<p>##经验法则 ： 能不用for循环就不用for循环，当你想写一个for循环时，查查看numpy中有没有合适的函数可以直接调用##</p>
-<p>##向量化logistic回归##<br>a 是激活函数<br>z 是预测的结果</p>
+<h2 id="logistic回归"><a href="#logistic回归" class="headerlink" title="logistic回归"></a>logistic回归</h2><p>Given x, want y = P(y = 1| x)<br>该回归的参数是w 和 b<br>输出是 y = sigmoid( wT x + b) 如图所示<br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/05.jpg" alt=""><br>用于二分分类的算法<br>计算机在保存图片信息时，一般有红黄蓝三个独立的矩阵<br>误差函数是对单个样本而言的 衡量单一训练样例的效果<br>成本函数是基于参数的总成本 衡量参数 w 和 b 的效果<br>要找到合适的参数w 和 b使得成本函数J尽可能的小<br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/02.png" alt=""></p>
+<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>找w的最小值 w := w - α dJ(w)/dw<br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/03.png" alt=""><br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/04.png" alt=""><br>J是成本函数，其值为<br><img src="/2019/01/04/Neural-Networks-Deep-Learning学习笔记/06.png" alt=""><br>这样设置J的目的是为了确保梯度下降是能求到唯一的一个点<br>链式法则： 如果a 影响到v 最终影响到J , 那么让a变大时，J的变化量就是当你改变a时v的变化量乘以改变v时J的变化量</p>
+<h2 id="约定俗成的数学符号"><a href="#约定俗成的数学符号" class="headerlink" title="约定俗成的数学符号"></a>约定俗成的数学符号</h2><p>m表示训练集的规模，训练样本的个数<br>(x, y ) x是n维的特征向量，标签y值为0或者1<br>：= 表示更新值<br>dw 表示导数<br>ə 当函数J中的变量有两个以上时 使用这个偏导数符号 计算一个函数在对应点所对应的斜率<br>d 当函数J中的变量仅有一个时，使用d就行了<br>dvar表示你关心的最终变量J的导数</p>
+<h2 id="向量化"><a href="#向量化" class="headerlink" title="向量化"></a>向量化</h2><p>为了消除显示的for循环, 简单点来说 向量化比起非向量化要快了300倍<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">a = np.random.rand(1000000)</span><br><span class="line">b = np.random.rand(1000000)</span><br><span class="line"></span><br><span class="line">tic = time.time()</span><br><span class="line">c = np.dot(a,b)</span><br><span class="line">toc = time.time()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Vectorized version: "</span> + str(1000*(toc-tic))+<span class="string">"ms"</span>)</span><br><span class="line"></span><br><span class="line">c = 0</span><br><span class="line">tic = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range (1000000) :</span><br><span class="line">    c += a[i] * b[i]</span><br><span class="line">toc = time.time()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"For loop: "</span> + str(1000*(toc-tic)) + <span class="string">"ms"</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="SIMD-Single"><a href="#SIMD-Single" class="headerlink" title="SIMD-Single"></a>SIMD-Single</h2><p>单指令流多数据流：如果使用了这样的内置函数，或者其他能让你去掉显示for循环的函数，这样可以并行化的更快的去计算</p>
+<h2 id="经验法则-：-能不用for循环就不用for循环，当你想写一个for循环时，查查看numpy中有没有合适的函数可以直接调用"><a href="#经验法则-：-能不用for循环就不用for循环，当你想写一个for循环时，查查看numpy中有没有合适的函数可以直接调用" class="headerlink" title="经验法则 ： 能不用for循环就不用for循环，当你想写一个for循环时，查查看numpy中有没有合适的函数可以直接调用"></a>经验法则 ： 能不用for循环就不用for循环，当你想写一个for循环时，查查看numpy中有没有合适的函数可以直接调用</h2><h2 id="向量化logistic回归"><a href="#向量化logistic回归" class="headerlink" title="向量化logistic回归"></a>向量化logistic回归</h2><p>a 是激活函数<br>z 是预测的结果</p>
 <p>z = np.dot(w.T, x) + b<br>用这一行就可以计算出正向传播的z<br>A = sigmod(z)<br>然后对所有的z做 0-1 间的处理，整合成向量A<br>dz = A - Y = [a1 - y1, … am - ym]<br>求所有a和y的误差，整合成向量dz</p>
 <p>db = 1/m np.sum(dz)<br>dw = 1/m X dzT</p>
 <p>w = w - α dw<br>b = b -α db</p>
 <p>最后根据dz的值梯度下降更新db 和 dw， α是学习率</p>
-<p>##python编程的一些技巧##<br>如果想创建一个5行1列的矩阵 别用 每次定义的时候都要定义一个列向量 会简单很多<br>a = random.rand(5)<br>而要用<br>a = random.rand(5,1)<br>多用 assert(a.shpae == (5,1)) 来确保这是一个向量<br>如果确实得到的是一个数组 可以通过<br>a = a.reshape((5,1)) 来重新展开成一个变量</p>
+<h2 id="python编程的一些技巧"><a href="#python编程的一些技巧" class="headerlink" title="python编程的一些技巧"></a>python编程的一些技巧</h2><p>如果想创建一个5行1列的矩阵 别用 每次定义的时候都要定义一个列向量 会简单很多<br>a = random.rand(5)<br>而要用<br>a = random.rand(5,1)<br>多用 assert(a.shpae == (5,1)) 来确保这是一个向量<br>如果确实得到的是一个数组 可以通过<br>a = a.reshape((5,1)) 来重新展开成一个变量</p>
 <p>x_norm=np.linalg.norm(x, ord=None, axis=None, keepdims=False)</p>
-<p>#计算|x| ##</p>
-<p>##现在让我们进行一个简单的任务##<br>首先列出我们需要的包</p>
+<h2 id="计算-x"><a href="#计算-x" class="headerlink" title="计算|x|"></a>计算|x|</h2><h2 id="现在让我们进行一个简单的任务"><a href="#现在让我们进行一个简单的任务" class="headerlink" title="现在让我们进行一个简单的任务"></a>现在让我们进行一个简单的任务</h2><p>首先列出我们需要的包</p>
 <ul>
 <li><a href="www.numpy.org">numpy</a> 用python进行科学计算</li>
 <li><a href="http://www.h5py.org" target="_blank" rel="noopener">h5py</a> is a common package to interact with a dataset that is stored on an H5 file.</li>
 <li><a href="http://matplotlib.org" target="_blank" rel="noopener">matplotlib</a> is a famous library to plot graphs in Python.</li>
 <li><a href="http://www.pythonware.com/products/pil/" target="_blank" rel="noopener">PIL</a> and <a href="https://www.scipy.org/" target="_blank" rel="noopener">scipy</a> are used here to test your model with your own picture at the end.</li>
 </ul>
-<p>##一个小技巧##<br>如果我们想把向量x(a,b,c,d) 变成x_flatten(b<em>c</em>d, a) 我们可以用<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_flatten = X.reshape(X.shape[<span class="number">0</span>], <span class="number">-1</span>).T      <span class="comment"># X.T is the transpose of X</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="一个小技巧"><a href="#一个小技巧" class="headerlink" title="一个小技巧"></a>一个小技巧</h2><p>如果我们想把向量x(a,b,c,d) 变成x_flatten(b<em>c</em>d, a) 我们可以用<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_flatten = X.reshape(X.shape[<span class="number">0</span>], <span class="number">-1</span>).T      <span class="comment"># X.T is the transpose of X</span></span><br></pre></td></tr></table></figure></p>
 <p>机器学习中一个常见的预处理步骤是对数据集进行居中和标准化，这意味着您从每个示例中减去整个numpy数组的平均值，然后将每个示例除以整个numpy数组的标准偏差。但是对于图片数据集，它更简单，更方便，几乎可以将数据集的每一行除以255（像素通道的最大值）。</p>
-<p>##预处理新数据集的常用步骤如下：##</p>
-<p>弄清楚问题的大小和形状（m_train，m_test，num_px，…）<br>重塑数据集，使每个示例现在是一个大小的向量（num_px <em> num_px </em> 3,1）<br>“标准化”数据</p>
-<p>#绘图<br>for i in learning_rates:<br>    plt.plot(np.squeeze(models[str(i)][“costs”]), label= str(models[str(i)][“learning_rate”]))</p>
+<h2 id="预处理新数据集的常用步骤如下："><a href="#预处理新数据集的常用步骤如下：" class="headerlink" title="预处理新数据集的常用步骤如下："></a>预处理新数据集的常用步骤如下：</h2><p>弄清楚问题的大小和形状（m_train，m_test，num_px，…）<br>重塑数据集，使每个示例现在是一个大小的向量（num_px <em> num_px </em> 3,1）<br>“标准化”数据</p>
+<h2 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h2><p>for i in learning_rates:<br>    plt.plot(np.squeeze(models[str(i)][“costs”]), label= str(models[str(i)][“learning_rate”]))</p>
 <p>plt.ylabel(‘cost’)<br>plt.xlabel(‘iterations’)</p>
 <p>legend = plt.legend(loc=’upper center’, shadow=True)<br>frame = legend.get_frame()<br>frame.set_facecolor(‘0.90’)<br>plt.show()</p>
 <p>cmap = plt.cm.Spectral实现的功能是给label为1的点一种颜色，给label为0的点另一种颜色。</p>
@@ -437,7 +434,7 @@ height:50vh;
             <p>原文作者：<a href="https://yxiaoge.github.io">YSJ</a>
             </p><p>原文链接：<a href="https://yxiaoge.github.io/2019/01/04/Neural-Networks-Deep-Learning学习笔记/">https://yxiaoge.github.io/2019/01/04/Neural-Networks-Deep-Learning学习笔记/</a>
             </p><p>发表日期：<a href="https://yxiaoge.github.io/2019/01/04/Neural-Networks-Deep-Learning学习笔记/">January 4th 2019, 2:08:27 pm</a>
-            </p><p>更新日期：<a href="https://yxiaoge.github.io/2019/01/04/Neural-Networks-Deep-Learning学习笔记/">January 24th 2019, 6:53:19 pm</a>
+            </p><p>更新日期：<a href="https://yxiaoge.github.io/2019/01/04/Neural-Networks-Deep-Learning学习笔记/">January 24th 2019, 8:03:47 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -567,7 +564,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么深度学习这个概念一直都有，但最近变得特别厉害"><span class="toc-number">1.</span> <span class="toc-text">为什么深度学习这个概念一直都有，但最近变得特别厉害</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logistic回归"><span class="toc-number">2.</span> <span class="toc-text">logistic回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降算法"><span class="toc-number">3.</span> <span class="toc-text">梯度下降算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#约定俗成的数学符号"><span class="toc-number">4.</span> <span class="toc-text">约定俗成的数学符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#向量化"><span class="toc-number">5.</span> <span class="toc-text">向量化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIMD-Single"><span class="toc-number">6.</span> <span class="toc-text">SIMD-Single</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#经验法则-：-能不用for循环就不用for循环，当你想写一个for循环时，查查看numpy中有没有合适的函数可以直接调用"><span class="toc-number">7.</span> <span class="toc-text">经验法则 ： 能不用for循环就不用for循环，当你想写一个for循环时，查查看numpy中有没有合适的函数可以直接调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#向量化logistic回归"><span class="toc-number">8.</span> <span class="toc-text">向量化logistic回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python编程的一些技巧"><span class="toc-number">9.</span> <span class="toc-text">python编程的一些技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算-x"><span class="toc-number">10.</span> <span class="toc-text">计算|x|</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现在让我们进行一个简单的任务"><span class="toc-number">11.</span> <span class="toc-text">现在让我们进行一个简单的任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个小技巧"><span class="toc-number">12.</span> <span class="toc-text">一个小技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预处理新数据集的常用步骤如下："><span class="toc-number">13.</span> <span class="toc-text">预处理新数据集的常用步骤如下：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绘图"><span class="toc-number">14.</span> <span class="toc-text">绘图</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -580,16 +577,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
