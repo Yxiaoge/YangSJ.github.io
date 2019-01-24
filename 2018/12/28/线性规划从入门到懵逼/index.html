@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hello World · YSJ&#39;s Studio</title>
+    <title>线性规划从入门到懵逼 · YSJ&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">杨小哥的蒙蔽日常.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hello World</a>
+                <a href="#" class="post-name">线性规划从入门到懵逼</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hello World
+            线性规划从入门到懵逼
             <!-- 404 -->
             
         </h1>
@@ -264,9 +264,15 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="对偶">对偶</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">73</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">780</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,24 +401,22 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>]<br>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>###线性规划的形式<br>首先，所有的线性规划问题为了整齐，可以将其变成标准型：<br><img src="/2018/12/28/线性规划从入门到懵逼/标准型.png" alt="标准型"><br>为了求解，可以在里面加入个约束，这就变成了松弛型：<br><img src="/2018/12/28/线性规划从入门到懵逼/松弛型.png" alt="松弛型"><br>按照要求，左边变量的xi都不能小于0，为了求解这类问题，需要引入一个单纯形算法的概念：</p>
+<p>###单纯形算法<br>单纯形法是通过设置不同的基变量，经过矩阵的线性变换，求得基的可行解（此时这个可行解在可行域的顶点处），并判断该解是否达到最优？否则继续设置下一组基向量，重复执行，直至找到最优解。本质上来说单纯形算法就是一个循环迭代的过程</p>
+<p>单纯形算法是通过线性规划的<strong>标准型</strong>来求解的，要求：<br>1) 目标函数要求max<br>2) 约束条件均为等式<br>3) 决策变量为非负约束</p>
+<p>而普通的线性规划如果要变成标准型<br>1) 对偶<br>2) 约束为不等式，则可以在左端加入非松弛变量，转化为等式<br>3) 若存在取值无约束的变量，可以转换成两个非负变量的差值。如：<br><img src="/2018/12/28/线性规划从入门到懵逼/01.gif" alt=""></p>
+<p>###单纯形算法的几何意义<br>在标准型中，如果有m个约束条件（不包括非负约束），n个决策变量，且(n &gt;= m)。首先我们选取m个基变量<em>xj’ ( j = 1,2,…,m )</em>, 基变量对应约束矩阵的列向量线性无关，通过矩阵的线性变换，基变量可以由非基变量表示，这时候再令非基变量等于0，可以求得基变量的值.</p>
+<p>这样说可能太过抽象，我们来举个例子吧.<br><img src="/2018/12/28/线性规划从入门到懵逼/02.gif" alt=""><br>初始随便先选择x2, x3为基变量，令x1, x4等于0可以解基变量x2, x3的值.(这里的C代表的是目标函数)<br><img src="/2018/12/28/线性规划从入门到懵逼/03.gif" alt=""><br>这个时候令x1, x4的值为0，很容易就可以解出基变量x2 = 9/2 , x3 = 15/2<br>从几何意义上来说，x1 = 0 表示可行解在y轴上， x4 = 0 表示可行解在x1 + 2*x2 = 9的直线上，那么解除的点就代表着这两条直线的交点，也是可行域的顶点，如图：<br><img src="/2018/12/28/线性规划从入门到懵逼/05.png" alt=""><br>这时候我们可以通过选择不同的基变量来获得不同的可行域顶点</p>
+<p>###如何判断哪个顶点是最优解<br>就像前面说的那样，我们用非基变量表示基变量<br><img src="/2018/12/28/线性规划从入门到懵逼/06.gif" alt=""><br>目标函数z也完全用非基变量来表示：<br><img src="/2018/12/28/线性规划从入门到懵逼/04.gif" alt=""><br>当达到最优解的时候，所有的σj应该小于等于0。当存在j使得 σj&gt;0 时，当前解非最优。<br>因为当前的目标函数值为z0，  其中所有的非基变量值均为0， <strong>xj’=0 代表可行域的某个边界</strong>。 是x’j的最小值， 如果代表可行解的点逐渐离开这个边界， xj’会变大， 如果σj &gt;0 显然目标函数z0的值也会变大，所以当前解不是最优解。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">John Doe</a>
-            </p><p>原文链接：<a href="http://yoursite.com/2018/12/28/hello-world/">http://yoursite.com/2018/12/28/hello-world/</a>
-            </p><p>发表日期：<a href="http://yoursite.com/2018/12/28/hello-world/">December 28th 2018, 12:27:40 am</a>
-            </p><p>更新日期：<a href="http://yoursite.com/2018/12/28/hello-world/">January 7th 2019, 6:05:27 pm</a>
+            </p><p>原文链接：<a href="http://yoursite.com/2018/12/28/线性规划从入门到懵逼/">http://yoursite.com/2018/12/28/线性规划从入门到懵逼/</a>
+            </p><p>发表日期：<a href="http://yoursite.com/2018/12/28/线性规划从入门到懵逼/">December 28th 2018, 4:32:16 pm</a>
+            </p><p>更新日期：<a href="http://yoursite.com/2018/12/28/线性规划从入门到懵逼/">January 4th 2019, 7:20:20 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -421,12 +425,17 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2018/12/28/线性规划从入门到懵逼/" title="线性规划从入门到懵逼">
-                    <div class="nextTitle">线性规划从入门到懵逼</div>
+                <a href="/2019/01/03/自控力/" title="自控力读后感">
+                    <div class="nextTitle">自控力读后感</div>
                 </a>
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2018/12/28/hello-world/" title="Hello World">
+                    <div class="prevTitle">Hello World</div>
+                </a>
             
         </li>
     </ul>
@@ -537,7 +546,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
