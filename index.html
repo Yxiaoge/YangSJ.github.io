@@ -359,12 +359,36 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/01/24/CAT技术学习手稿/">
+            
+                <span>CAT技术学习手稿</span>
+        </a>
+        <div class="abstract-content">
+            最近做的研究用到了，做一下备忘
+Cache Allocation Technology(CAT)提供对给定线程，应用程序，虚拟机进行LLC级cache使用量限制CAT引入了一种称为Class of Service( CLOS )的中间构造，可以理解为资源控制标签，无论是线程还是app/VM/container ，一旦被分组到这个标签下，并且此时CLOS如果又具有关联的resource capacity bitmasks(CBMs)，那么一组都能使用这个被约束的缓存。如图所示：通过containing capacity bitmasks (CBMs)的MSR block指定给应用程序它可以...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/01/04/Combinations问题/">
             
                 <span>Combinations问题</span>
         </a>
         <div class="abstract-content">
-            ##Leetcode 77给出两个整数k和n, 求在1..n这n个数字中选出k个数字的所有组合
+            #Leetcode 77#给出两个整数k和n, 求在1..n这n个数字中选出k个数字的所有组合
 这一题可以用回溯法来解决，如n=4,k=2的情况我们可以先取1，然后还剩下234，再分别取2，3，4然后再从2开始，还剩下34再分别取3，4最后是从3开始，还剩下4取4123456789101112131415161718192021222324252627282930313233 #include &lt;stdc++.h&gt;using namespace std;class Solution &#123;private :	vector&lt;vector&lt;int&gt;&gt;...
         </div>
         <div class="abstract-post-meta">
@@ -444,10 +468,10 @@ Idea -&gt; Code -&gt; Experiment -&gt;Idea
                 <span>线性规划从入门到懵逼</span>
         </a>
         <div class="abstract-content">
-            ###线性规划的形式首先，所有的线性规划问题为了整齐，可以将其变成标准型：为了求解，可以在里面加入个约束，这就变成了松弛型：按照要求，左边变量的xi都不能小于0，为了求解这类问题，需要引入一个单纯形算法的概念：
-###单纯形算法单纯形法是通过设置不同的基变量，经过矩阵的线性变换，求得基的可行解（此时这个可行解在可行域的顶点处），并判断该解是否达到最优？否则继续设置下一组基向量，重复执行，直至找到最优解。本质上来说单纯形算法就是一个循环迭代的过程
+            ###线性规划的形式###首先，所有的线性规划问题为了整齐，可以将其变成标准型：为了求解，可以在里面加入个约束，这就变成了松弛型：按照要求，左边变量的xi都不能小于0，为了求解这类问题，需要引入一个单纯形算法的概念：
+###单纯形算法###单纯形法是通过设置不同的基变量，经过矩阵的线性变换，求得基的可行解（此时这个可行解在可行域的顶点处），并判断该解是否达到最优？否则继续设置下一组基向量，重复执行，直至找到最优解。本质上来说单纯形算法就是一个循环迭代的过程
 单纯形算法是通过线性规划的标准型来求解的，要求：1) 目标函数要求max2) 约束条件均为等式3) 决策变量为非负约束
-而普通的线性规划如果要变...
+而普通的线性...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -756,9 +780,18 @@ More...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -785,6 +818,11 @@ More...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/24</span><a class="archive-post-title" href="/2019/01/24/CAT技术学习手稿/">CAT技术学习手稿</a>
+        </li>
     
     
         <li class="archive-post-item">

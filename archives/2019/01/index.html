@@ -346,12 +346,36 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/01/24/CAT技术学习手稿/">
+            
+                <span>CAT技术学习手稿</span>
+        </a>
+        <div class="abstract-content">
+            最近做的研究用到了，做一下备忘
+Cache Allocation Technology(CAT)提供对给定线程，应用程序，虚拟机进行LLC级cache使用量限制CAT引入了一种称为Class of Service( CLOS )的中间构造，可以理解为资源控制标签，无论是线程还是app/VM/container ，一旦被分组到这个标签下，并且此时CLOS如果又具有关联的resource capacity bitmasks(CBMs)，那么一组都能使用这个被约束的缓存。如图所示：通过containing capacity bitmasks (CBMs)的MSR block指定给应用程序它可以...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/01/04/Combinations问题/">
             
                 <span>Combinations问题</span>
         </a>
         <div class="abstract-content">
-            ##Leetcode 77给出两个整数k和n, 求在1..n这n个数字中选出k个数字的所有组合
+            #Leetcode 77#给出两个整数k和n, 求在1..n这n个数字中选出k个数字的所有组合
 这一题可以用回溯法来解决，如n=4,k=2的情况我们可以先取1，然后还剩下234，再分别取2，3，4然后再从2开始，还剩下34再分别取3，4最后是从3开始，还剩下4取4123456789101112131415161718192021222324252627282930313233 #include &lt;stdc++.h&gt;using namespace std;class Solution &#123;private :	vector&lt;vector&lt;int&gt;&gt;...
         </div>
         <div class="abstract-post-meta">
@@ -568,9 +592,18 @@ Idea -&gt; Code -&gt; Experiment -&gt;Idea
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -597,6 +630,11 @@ Idea -&gt; Code -&gt; Experiment -&gt;Idea
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/24</span><a class="archive-post-title" href="/2019/01/24/CAT技术学习手稿/">CAT技术学习手稿</a>
+        </li>
     
     
         <li class="archive-post-item">
